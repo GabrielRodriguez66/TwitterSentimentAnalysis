@@ -1,0 +1,5 @@
+# Environment directories to ignore
+
+venv/
+__pycache__/
+.idea/
