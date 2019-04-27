@@ -78,10 +78,14 @@ class TwitterClient:
         for tweet in ntweets[:10]:
             print(tweet['text'])
 
-    def to_csv(self, file_name):
+    '''
+        Export fetched tweets to csv in the specified path
+    '''
+
+    def to_csv(self, file_path):
         tweet_list = [[tweet['username'], tweet['text'], tweet['sentiment']] for tweet in self.tweets]
         df = pd.DataFrame(data=tweet_list, columns=['Username', 'Tweet', 'Sentiment_Value'])
-        df.to_csv(file_name + '.csv', encoding='utf-8-sig')
+        df.to_csv(file_path, encoding='utf-8-sig')
 
     '''
         Utility private function to classify sentiment of passed tweet
