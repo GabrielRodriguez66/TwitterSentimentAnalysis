@@ -1,3 +1,5 @@
+# Package global variables, credentials
+
 API_KEY = '0D5rZjYYfb1LWQtiKy1jF0iP5'
 API_SECRET_KEY = 'aYj4lL3IREd4blwMcOZLKpQo9lis70cHUmORhckoW7M8rDw7zY'
 ACCESS_TOKEN = '1034108254941601792-FrPOpvknpjJ7xemKJyZomh7egFYh7R'
