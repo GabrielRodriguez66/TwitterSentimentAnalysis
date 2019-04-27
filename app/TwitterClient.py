@@ -1,9 +1,7 @@
 import re
-
 import pandas as pd
 import tweepy
 from textblob import TextBlob
-
 from app import API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 
 
@@ -39,7 +37,7 @@ class TwitterClient:
 
             # saving text of tweet and sentiment of tweet
             parsed_tweet['text'] = tweet.full_text
-            parsed_tweet['sentiment'] = TwitterClient.__get_tweet_sentiment(tweet.full_text)
+            parsed_tweet['sentiment'] = TwitterClient.__sentiment(tweet.full_text)
             parsed_tweet['username'] = tweet.user.screen_name
 
             # appending parsed tweet to tweets list
@@ -92,9 +90,9 @@ class TwitterClient:
     '''
 
     @staticmethod
-    def __get_tweet_sentiment(tweet):
+    def __sentiment(tweet):
 
-        analysis = TextBlob(TwitterClient.__clean_tweet(tweet))
+        analysis = TextBlob(TwitterClient.__clean(tweet))
         if analysis.sentiment.polarity > 0:
             return 'positive'
         elif analysis.sentiment.polarity == 0:
@@ -108,7 +106,7 @@ class TwitterClient:
     '''
 
     @staticmethod
-    def __clean_tweet(tweet):
+    def __clean(tweet):
         return ' '.join(
             re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\ / \ / \S+)", " ", re.sub(r"http\S+", "", tweet)).split())
 
